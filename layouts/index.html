@@ -1,0 +1,110 @@
+{{ define "bodyclass" }}dive-home{{ end }}
+
+{{ define "main" }}
+
+    <div class="surface">
+      <div class="container">
+        <div class="depth">0 m · surface</div>
+        <h1>A browser engine, built from scratch.</h1>
+        <p class="lede">Gosub is a modular web browser engine written in Rust. Developers can plug in their own components like a JavaScript engine, the rendering pipeline, the networking stack, etc, without any single company setting the agenda for the web.</p>
+        <div class="btn-row">
+          <a class="btn" href="/contribute/">Get involved</a>
+          <a class="arrow-link" href="#design">Dive in</a>
+        </div>
+        <p class="dive-note">Scroll to descend ▾</p>
+      </div>
+    </div>
+
+    <section class="zone-periscope" id="design">
+      <div class="container">
+        <div class="depth">20 m · periscope depth</div>
+        <h2>A new web engine, written from scratch</h2>
+        <p class="zone-intro">Gosub is not a shell around an existing engine. It is a modular system in which every part - parsing, styling, scripting, rendering -  is designed to be replaced, extended, or recombined. We hope this leads to a more diverse landscape of browsers without a single engine or browser dominating the market.</p>
+        <div class="feature-cols">
+          <div>
+            <h3>Choose your JavaScript engine</h3>
+            <p>The scripting layer is pluggable by design. Run V8 today, swap in a different engine tomorrow. The choice belongs to the developer, not the vendor.</p>
+          </div>
+          <div>
+            <h3>Customize the rendering pipeline</h3>
+            <p>Build your own rendering pipeline on top of the engine's core, and tailor how content is laid out, painted, and composited.</p>
+          </div>
+          <div>
+            <h3>Components that fit together</h3>
+            <p>Each component has a clear boundary and a clear job, so you can take what you need and leave the rest.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="zone-twilight" id="status">
+      <div class="container">
+        <div class="depth">200 m · twilight zone</div>
+        <h2>Where the project stands</h2>
+        <p class="zone-intro">Gosub is in active early-stage development. We are building the core components of the engine like a CSS system, the rendering pipeline, and JavaScript integrations, while shaping an architecture that is as modular as possible.</p>
+        <div class="status-list">
+          <div class="status-item">
+            <div>
+              <h3>HTML5 parser</h3>
+              <span class="status-label ok">Working</span>
+            </div>
+            <p>Parses almost all HTML5 documents correctly and passes nearly the entire html5lib test suite. The current processing speed is almost at par with the more mature parsers available today.</p>
+          </div>
+          <div class="status-item">
+            <div>
+              <h3>CSS3 parser</h3>
+              <span class="status-label poc">Workable</span>
+            </div>
+            <p>Already parses a large amount of real-world CSS, with a value-syntax parser for validation. A new and better CSS system is currently in development, but for now we have a minimal but workable system.</p>
+          </div>
+          <div class="status-item">
+            <div>
+              <h3>JavaScript engine</h3>
+              <span class="status-label early">Early stage</span>
+            </div>
+            <p>Initial V8 integration behind a pluggable interface, including a basic console API.</p>
+          </div>
+          <div class="status-item">
+            <div>
+              <h3>Network stack</h3>
+              <span class="status-label ok">Usable</span>
+            </div>
+            <p>Our network stack is capable of handling many connections and deals with premature cancellations, multiplexing, priorities, streaming and much more.</p>
+          </div>
+        </div>
+        <p style="margin-top: 28px;"><a class="arrow-link ext" href="/status/">Full project status</a></p>
+      </div>
+    </section>
+
+    <section class="zone-midnight" id="why">
+      <div class="container">
+        <div class="depth">1 000 m · midnight zone</div>
+        <h2>Why go this deep?</h2>
+        <p class="zone-intro">Most browsers today are built on the same engine, concentrated in the hands of two companies with enormous influence over how the web evolves. We already see the downsides of this happening: anti-privacy functionality is implemented without a voice to fight back against.</p>
+        <blockquote>The web should be <em>open and free</em> for everyone to use. That takes more than one engine.</blockquote>
+        <p class="zone-intro">Building a browser engine demands expertise across many domains. No small team can do it alone, which is why Gosub is a community project. <a class="arrow-link ext" href="/about/" style="color: var(--accent-glow);">Read the full story</a></p>
+      </div>
+    </section>
+
+    <div class="abyss">
+      <div class="container">
+        <div class="depth">4 000 m · the abyss</div>
+        <div class="sub-art">
+          <img src="/assets/gosub-logo.svg" alt="">
+        </div>
+        <h2>Join the crew</h2>
+        <p class="zone-intro">Gosub is built by a community of volunteers. Whether you write code, documentation, or tests: there is a bunk for you aboard.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/gosub-io/gosub-engine">View on GitHub</a>
+          <a class="arrow-link ext" href="https://chat.developer.gosub.io">Join the Zulip chat</a>
+        </div>
+
+        {{ partial "footer.html" (dict "nomargin" false) }}
+      </div>
+
+      <div class="shipwreck">
+        <img src="/assets/ship4.png" alt="" class="shipwreck-img">
+      </div>
+    </div>
+
+{{ end }}

@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="depth">0 m · surface</div>
+      <h1>{{ .Title }}</h1>
+      <p class="lede blog-meta">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        {{ with .Params.author }} · {{ . }}{{ end }}
+      </p>
+    </div>
+  </div>
+
+  <section class="zone-deep">
+    <div class="container">
+      <div class="depth">30 m · sunlit zone</div>
+      <article class="prose">
+        {{ .Content }}
+        <p style="margin-top: 40px;"><a class="arrow-link ext" href="/blog/">← Back to all posts</a></p>
+      </article>
+    </div>
+  </section>
+
+  {{ partial "abyss.html" . }}
+
+{{ end }}

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Status - Gosub Browser Engine</title>
+  <meta name="description" content="Current development status of the Gosub browser engine components: HTML parser, CSS3 parser, bytestream, render pipeline, and JavaScript engine.">
+  <link rel="icon" type="image/svg+xml" href="/assets/gosub-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dive.css">
+</head>
+<body class="dive-inner">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="/assets/gosub-logo.svg" alt="">
+        Gosub
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-checkbox">
+      <label for="nav-toggle" class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></label>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="status.html" aria-current="page">Status</a>
+        <a href="contribute.html">Contribute</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://github.com/gosub-io/gosub-engine">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="page-hero">
+      <div class="container">
+        <div class="depth">0 m · surface</div>
+        <h1>Current status of the project</h1>
+        <p class="lede">Gosub is in its very early stages. Since Gosub is not a mere shell around an existing engine, it will take time before we can introduce a browser. Here is where each core component stands today.</p>
+      </div>
+    </div>
+
+    <section class="zone-deep">
+      <div class="container">
+        <div class="depth">25 m · the shallows</div>
+        <div class="status-list">
+
+          <div class="status-item">
+            <div>
+              <h3>HTML parser</h3>
+              <span class="status-label ok">Working</span>
+            </div>
+            <div>
+              <p>Almost all HTML5 documents are parsed correctly, and the parser passes nearly all tests from the html5lib test suite. Current focus:</p>
+              <ul>
+                <li>Optimizing performance and memory usage</li>
+                <li>Improving handling of invalid HTML</li>
+                <li>Reducing unnecessary memory copying</li>
+                <li>Separating parsing from the tree-building phase</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div>
+              <h3>Bytestream</h3>
+              <span class="status-label poc">Proof of concept</span>
+            </div>
+            <div>
+              <p>The first component in the pipeline: it reads input from the network and passes it on to the parsers. Current focus:</p>
+              <ul>
+                <li>Automatic encoding detection</li>
+                <li>Minimizing data copying throughout the stream</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div>
+              <h3>CSS3 parser</h3>
+              <span class="status-label poc">Proof of concept</span>
+            </div>
+            <div>
+              <p>Already parses a large amount of real-world CSS correctly. It consists of:</p>
+              <ul>
+                <li>The core CSS parser</li>
+                <li>A CSS value-syntax parser for validating property values</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div>
+              <h3>Render pipeline</h3>
+              <span class="status-label poc">Proof of concept</span>
+            </div>
+            <div>
+              <p>Still in its infancy, the pipeline is being designed from the ground up to handle DOM changes and re-render efficiently.</p>
+              <ul>
+                <li>Efficient handling of DOM mutations</li>
+                <li>Incremental re-rendering</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div>
+              <h3>JavaScript engine</h3>
+              <span class="status-label early">Early stage</span>
+            </div>
+            <div>
+              <p>An initial implementation built on V8, designed behind a pluggable interface so other engines can be swapped in later.</p>
+              <ul>
+                <li>V8 integration through the pluggable engine API</li>
+                <li>Basic console API implementation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="status-item">
+            <div>
+              <h3>Engine foundations</h3>
+              <span class="status-label early">In progress</span>
+            </div>
+            <div>
+              <p>Ongoing work on everything that ties the components together.</p>
+              <ul>
+                <li>Networking stack</li>
+                <li>Configuration system</li>
+                <li>Modular engine architecture</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="abyss">
+      <div class="container">
+        <div class="depth">80 m · open water</div>
+        <h2>Want to move a component forward?</h2>
+        <p class="zone-intro">Every item on this page is an opportunity to contribute. Pick one and dive in.</p>
+        <div class="btn-row">
+          <a class="btn" href="contribute.html">How to contribute</a>
+          <a class="arrow-link ext" href="https://github.com/gosub-io/gosub-engine">Browse the source</a>
+        </div>
+
+        <footer class="site-footer">
+          <p>Copyright © 2024–2026, the Gosub community.<br>Spotted an issue? <a href="https://github.com/gosub-io/gosub.io-website">Send a PR on GitHub</a>.</p>
+          <nav>
+            <a href="https://github.com/gosub-io/gosub-engine">GitHub</a>
+            <a href="https://chat.developer.gosub.io">Zulip</a>
+            <a href="https://chat.gosub.io">Discord</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </footer>
+
+        <p class="seafloor">- seafloor reached · resurface at <a href="#top" style="color:inherit;">↑ 0 m</a> -</p>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

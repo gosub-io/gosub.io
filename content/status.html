@@ -1,0 +1,112 @@
+---
+title: "Current status of the project"
+metatitle: "Project Status - Gosub Browser Engine"
+description: "Current development status of the Gosub browser engine components: HTML parser, CSS3 parser, bytestream, render pipeline, and JavaScript engine."
+lede: "Gosub is in its very early stages. Since Gosub is not a mere shell around an existing engine, it will take time before we can introduce a browser. Here is where each core component stands today. At this point, we have a multitude of components operational that allows us to combine them into a demonstration browser: it can render some pages (but most of them are still not working), we can click hyperlinks, and browse easy and non-javascript sites. We are able to demonstrate modularity by having this demonstration browser in a multitude of toolkits (gtk, egui, winit) and backend renderers (cairo, vello, skia)."
+zonedepth: "25 m · the shallows"
+abyss:
+  depth: "80 m · open water"
+  heading: "Want to move a component forward?"
+  intro: "Every item on this page is an opportunity to contribute. Pick one and dive in."
+  buttons:
+    - label: "How to contribute"
+      url: "/contribute/"
+    - label: "Browse the source"
+      url: "https://github.com/gosub-io/gosub-engine"
+      class: "arrow-link"
+      ext: true
+---
+<div class="status-list">
+
+  <div class="status-item">
+    <div>
+      <h3>HTML parser</h3>
+      <span class="status-label ok">Working</span>
+    </div>
+    <div>
+      <p>Almost all HTML5 documents are parsed correctly, and the parser passes nearly all tests from the html5lib test suite. Current focus:</p>
+      <ul>
+        <li>Optimizing performance and memory usage. We are almost on par with mature parsers.</li>
+        <li>Improving handling of invalid HTML</li>
+        <li>Reducing unnecessary memory copying</li>
+        <li>Separating parsing from the tree-building phase</li>
+        <li>Advanced functionality like speculative parsing</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="status-item">
+    <div>
+      <h3>Network stack</h3>
+      <span class="status-label poc">Usable</span>
+    </div>
+    <div>
+      <p>Our network stack (called "sonar") is capable of handling requests and deals with many aspects a network stack needs to worry about:</p>
+      <ul>
+        <li>Streaming and buffered data</li>
+        <li>Priority queuing</li>
+        <li>Cancellation and timeouts</li>
+        <li>Consolidation</li>
+        <li>Retry mechanisms</li>
+      </ul>
+
+      <p>But a lot is still missing:</p>
+      <ul>
+        <li>Dynamic configurable settings</li>
+        <li>HSTS</li>
+        <li>CORS</li>
+        <li>HTTP Caching</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="status-item">
+    <div>
+      <h3>CSS3 parser</h3>
+      <span class="status-label poc">Proof of concept</span>
+    </div>
+    <div>
+      <p>Our CSS3 parser is able to parse most of the CSS3 stylesheets out there, but it is not an optimal system. We are currently building a new CSS3 setup that we can implement, but we should be able to use mature systems like Stylo without too much effort as well.</p>
+    </div>
+  </div>
+
+  <div class="status-item">
+    <div>
+      <h3>Render pipeline</h3>
+      <span class="status-label poc">Maturing</span>
+    </div>
+    <div>
+      <p>A lot of work and a lot of optimization needs to happen in the render pipeline of a browser. We have set up a render pipeline that allows us to do that. Depending on the action (mouse movement, scrolling, hovering, loading), the render pipeline decides which stages need to be redone, and tries to keep computations at a minimum for fast response times. The pipeline is backend agnostic, so it doesn't matter whether you use a backend running on cairo, vello, or any other system.</p>
+      <ul>
+        <li>Multi stages pipeline</li>
+        <li>Backend agnostic</li>
+        <li>Caching and pre-rendering for fast scrolling</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="status-item">
+    <div>
+      <h3>JavaScript engine</h3>
+      <span class="status-label early">Early stage</span>
+    </div>
+    <div>
+      <p>An initial implementation built on V8, designed behind a pluggable interface so other engines can be swapped in later.</p>
+      <ul>
+        <li>V8 integration through the pluggable engine API</li>
+        <li>Basic console API implementation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="status-item">
+    <div>
+      <h3>Engine foundations</h3>
+      <span class="status-label ok">Working</span>
+    </div>
+    <div>
+      <p>In order to call the engine, we need a clearly defined public API for developers to use. We've created and merged this into the engine and allows to set up complex environments with multi-tab, multi-zoned pages that all can behave differently when it comes to cookies, sessions and settings. This allows us to have private sessions and containerized pages out of the box. Log into websites with multiple users at the same time, or as a developer see side-to-side scrollable views of the same page.</p>
+    </div>
+  </div>
+
+</div>

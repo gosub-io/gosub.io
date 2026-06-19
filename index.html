@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gosub - An independent modular browser engine</title>
+  <meta name="description" content="Gosub is an open-source, modular web browser engine.">
+  <link rel="icon" type="image/svg+xml" href="/assets/gosub-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dive.css">
+</head>
+<body class="dive-home">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="/assets/gosub-logo.svg" alt="">
+        Gosub
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-checkbox">
+      <label for="nav-toggle" class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></label>
+      <nav class="site-nav">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="about.html">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="status.html">Status</a>
+        <a href="contribute.html">Contribute</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://github.com/gosub-io/gosub-engine">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="surface">
+      <div class="container">
+        <div class="hero-brand">
+          <img src="/assets/gosub-logo.svg" alt="">
+          <span>Gosub</span>
+        </div>
+        <div class="depth">0 m · surface</div>
+        <h1>A browser engine, built from scratch.</h1>
+        <p class="lede">Gosub is a modular web browser engine written in Rust. Developers can plug in their own components - the JavaScript engine, the rendering pipeline, the networking stack - without any single company setting the agenda for the web.</p>
+        <div class="btn-row">
+          <a class="btn" href="contribute.html">Get involved</a>
+          <a class="arrow-link" href="#design">Dive in</a>
+        </div>
+        <p class="dive-note">Scroll to descend ▾</p>
+      </div>
+    </div>
+
+    <section class="zone-periscope" id="design">
+      <div class="container">
+        <div class="depth">20 m · periscope depth</div>
+        <h2>A new web engine, written from scratch</h2>
+        <p class="zone-intro">Gosub is not a shell around an existing engine. It is a modular system in which every part - parsing, styling, scripting, rendering - is designed to be replaced, extended, or recombined. We hope this leads to a more diverse landscape of browsers.</p>
+        <div class="feature-cols">
+          <div>
+            <h3>Choose your JavaScript engine</h3>
+            <p>The scripting layer is pluggable by design. Run V8 today, swap in a different engine tomorrow - the choice belongs to the developer, not the vendor.</p>
+          </div>
+          <div>
+            <h3>Customize the rendering pipeline</h3>
+            <p>Build your own rendering pipeline on top of the engine's core, and tailor how content is laid out, painted, and composited.</p>
+          </div>
+          <div>
+            <h3>Components that fit together</h3>
+            <p>Each component has a clear boundary and a clear job, so you can take what you need and leave the rest.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="zone-twilight" id="status">
+      <div class="container">
+        <div class="depth">200 m · twilight zone</div>
+        <h2>Where the project stands</h2>
+        <p class="zone-intro">Gosub is in active early-stage development. We are building the core components of the engine - the CSS system, the rendering pipeline, and JavaScript integration - while shaping an architecture that is as modular as possible.</p>
+        <div class="status-list">
+          <div class="status-item">
+            <div>
+              <h3>HTML parser</h3>
+              <span class="status-label ok">Working</span>
+            </div>
+            <p>Parses almost all HTML5 documents correctly and passes nearly the entire html5lib test suite. The current processing speed is almost at par with the more mature parsers available today.</p>
+          </div>
+          <div class="status-item">
+            <div>
+              <h3>CSS3 parser</h3>
+              <span class="status-label poc">Proof of concept</span>
+            </div>
+            <p>Already parses a large amount of real-world CSS, with a value-syntax parser for validation.</p>
+          </div>
+          <div class="status-item">
+            <div>
+              <h3>JavaScript engine</h3>
+              <span class="status-label early">Early stage</span>
+            </div>
+            <p>Initial V8 integration behind a pluggable interface, including a basic console API.</p>
+          </div>
+          <div class="status-item">
+            <div>
+              <h3>Network stack</h3>
+              <span class="status-label ok">Usable</span>
+            </div>
+            <p>Our network stack is capable of handling many connections and deals with premature cancellations, multiplexing, priorities, streaming and much more.</p>
+          </div>
+        </div>
+        <p style="margin-top: 28px;"><a class="arrow-link ext" href="status.html">Full project status</a></p>
+      </div>
+    </section>
+
+    <section class="zone-midnight" id="why">
+      <div class="container">
+        <div class="depth">1 000 m · midnight zone</div>
+        <h2>Why go this deep?</h2>
+        <p class="zone-intro">Most browsers today are built on the same engine, concentrated in the hands of two companies - with enormous influence over how the web evolves.</p>
+        <blockquote>The web should be <em>open and free</em> for everyone to use. That takes more than one engine.</blockquote>
+        <p class="zone-intro">Building a browser engine demands expertise across many domains. No small team can do it alone - which is why Gosub is a community project. <a class="arrow-link ext" href="about.html" style="color: var(--accent-glow);">Read the full story</a></p>
+      </div>
+    </section>
+
+    <div class="abyss">
+      <div class="container">
+        <div class="depth">4 000 m · the abyss</div>
+        <div class="sub-art">
+          <img src="/assets/gosub-logo.svg" alt="">
+        </div>
+        <h2>Join the crew</h2>
+        <p class="zone-intro">Gosub is built by a community of volunteers. Whether you write code, documentation, or tests - there is a bunk for you aboard.</p>
+        <div class="btn-row">
+          <a class="btn" href="https://github.com/gosub-io/gosub-engine">View on GitHub</a>
+          <a class="arrow-link ext" href="https://chat.developer.gosub.io">Join the Zulip chat</a>
+        </div>
+
+        <footer class="site-footer">
+          <p>Copyright © 2024–2026, the Gosub community.<br>Spotted an issue? <a href="https://github.com/gosub-io/gosub.io-website">Send a PR on GitHub</a>.</p>
+          <nav>
+            <a href="https://github.com/gosub-io/gosub-engine">GitHub</a>
+            <a href="https://chat.developer.gosub.io">Zulip</a>
+            <a href="https://chat.gosub.io">Discord</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </footer>
+
+        <p class="seafloor">- seafloor reached · resurface at <a href="#top" style="color:inherit;">↑ 0 m</a> -</p>
+      </div>
+
+      <div class="shipwreck">
+        <img src="/assets/ship4.png" alt="" class="shipwreck-img">
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

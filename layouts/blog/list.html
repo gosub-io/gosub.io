@@ -1,0 +1,49 @@
+{{ define "main" }}
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="depth">0 m · surface</div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.lede }}<p class="lede">{{ . | safeHTML }}</p>{{ end }}
+    </div>
+  </div>
+
+  <section class="zone-deep">
+    <div class="container">
+      {{ $pages := .Pages.ByDate.Reverse }}
+      {{ with $pages }}
+        {{ $latest := index . 0 }}
+        <article class="blog-featured">
+          <h2><a href="{{ $latest.RelPermalink }}">{{ $latest.Title }}</a></h2>
+          <p class="blog-meta">
+            <time datetime="{{ $latest.Date.Format "2006-01-02" }}">{{ $latest.Date.Format "January 2, 2006" }}</time>
+            {{ with $latest.Params.author }} · {{ . }}{{ end }}
+          </p>
+          <div class="blog-excerpt">{{ $latest.Summary }}</div>
+          <p><a class="arrow-link ext" href="{{ $latest.RelPermalink }}">Read more</a></p>
+        </article>
+
+        {{ with after 1 . }}
+        <div class="depth depth-deep">100 m · open water</div>
+        <p class="blog-more-heading">More posts</p>
+        <div class="blog-list compact">
+          {{ range . }}
+          <article class="blog-entry">
+            <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+            <p class="blog-meta">
+              <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+              {{ with .Params.author }} · {{ . }}{{ end }}
+            </p>
+          </article>
+          {{ end }}
+        </div>
+        {{ end }}
+      {{ else }}
+        <p class="zone-intro">No posts yet - check back soon.</p>
+      {{ end }}
+    </div>
+  </section>
+
+  {{ partial "abyss.html" . }}
+
+{{ end }}

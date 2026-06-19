@@ -1,0 +1,22 @@
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/">
+      <img src="/assets/gosub-logo.svg" alt="">
+      Gosub
+    </a>
+    <input type="checkbox" id="nav-toggle" class="nav-checkbox">
+    <label for="nav-toggle" class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></label>
+    <nav class="site-nav">
+      {{ $current := . }}
+      {{ range .Site.Menus.main }}
+        {{ $active := false }}
+        {{ if eq .URL "/" }}
+          {{ $active = $current.IsHome }}
+        {{ else if hasPrefix .URL "/" }}
+          {{ $active = hasPrefix $current.RelPermalink .URL }}
+        {{ end }}
+        <a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

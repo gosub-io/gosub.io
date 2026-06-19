@@ -1,0 +1,19 @@
+{{- /* Expects the page as context; reads .Params.abyss for CTA content. */ -}}
+{{ with .Params.abyss }}
+<div class="abyss">
+  <div class="container">
+    <div class="depth">{{ .depth }}</div>
+    {{ with .heading }}<h2>{{ . }}</h2>{{ end }}
+    {{ with .intro }}<p class="zone-intro">{{ . | safeHTML }}</p>{{ end }}
+    {{ with .buttons }}
+    <div class="btn-row">
+      {{ range . }}
+      <a class="{{ .class | default "btn" }}{{ if .ext }} ext{{ end }}" href="{{ .url }}">{{ .label }}</a>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ partial "footer.html" (dict "nomargin" .footernomargin) }}
+  </div>
+</div>
+{{ end }}

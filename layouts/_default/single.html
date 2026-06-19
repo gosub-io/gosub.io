@@ -1,0 +1,20 @@
+{{ define "main" }}
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="depth">{{ .Params.herodepth | default "0 m · surface" }}</div>
+      <h1>{{ .Title }}</h1>
+      {{ with .Params.lede }}<p class="lede">{{ . | safeHTML }}</p>{{ end }}
+    </div>
+  </div>
+
+  <section class="zone-deep">
+    <div class="container">
+      {{ with .Params.zonedepth }}<div class="depth">{{ . }}</div>{{ end }}
+      {{ .Content }}
+    </div>
+  </section>
+
+  {{ partial "abyss.html" . }}
+
+{{ end }}

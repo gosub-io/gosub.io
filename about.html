@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - Gosub Browser Engine</title>
+  <meta name="description" content="Why Gosub exists: the web deserves more than two browser engines. Learn about the motivation behind building a new engine from scratch.">
+  <link rel="icon" type="image/svg+xml" href="/assets/gosub-logo.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dive.css">
+</head>
+<body class="dive-inner">
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html">
+        <img src="/assets/gosub-logo.svg" alt="">
+        Gosub
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-checkbox">
+      <label for="nav-toggle" class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></label>
+      <nav class="site-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html" aria-current="page">About</a>
+        <a href="faq.html">FAQ</a>
+        <a href="status.html">Status</a>
+        <a href="contribute.html">Contribute</a>
+        <a href="contact.html">Contact</a>
+        <a href="https://github.com/gosub-io/gosub-engine">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <div class="page-hero">
+      <div class="container">
+        <div class="depth">0 m · surface</div>
+        <h1>About the Gosub engine</h1>
+        <p class="lede">The web should be open and free for everyone. That starts with having a real choice in browser engines.</p>
+      </div>
+    </div>
+
+    <section class="zone-deep">
+      <div class="container">
+        <div class="depth">30 m · sunlit zone</div>
+        <div class="prose">
+          <h2>Why build another engine?</h2>
+          <p>Take a look at the browsers available today and you will notice that most of them are based on the same engine. Chrome and Edge share the same foundation, and the engines that power nearly all browsing are effectively concentrated in the hands of two companies. That concentration gives a very small group enormous influence over how the web evolves.</p>
+          <p>We believe the web should be open and free for everyone to use. A healthy web needs a diverse ecosystem of engines, so that no single company or organisation can force its own agenda on the standards and technologies we all depend on.</p>
+
+          <h2>Our answer: a modular engine</h2>
+          <p>Gosub is a web browser engine written from scratch in Rust. Rather than producing one monolithic engine, we are building a modular system in which developers can plug in their own components - their own rendering pipeline, their own JavaScript engine, their own networking stack. We hope this leads to a more diverse landscape of browsers in the future.</p>
+
+          <h2>A community effort</h2>
+          <p>Building a browser engine demands expertise across many domains: web standards, network protocols, rendering, security, and software architecture. No small team can do this alone. Gosub is a community project, and creating a genuinely competitive alternative will take collaboration from contributors of all backgrounds and skill levels.</p>
+          <p>Curious where things stand? Check the <a href="status.html">current project status</a>, or head straight to the <a href="contribute.html">contribute page</a> to get involved.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="abyss">
+      <div class="container">
+        <div class="depth">80 m · open water</div>
+        <h2>The web is worth it</h2>
+        <p class="zone-intro">Join a community that believes browser diversity matters.</p>
+        <div class="btn-row">
+          <a class="btn" href="contribute.html">Start contributing</a>
+          <a class="arrow-link ext" href="faq.html">Read the FAQ</a>
+        </div>
+
+        <footer class="site-footer">
+          <p>Copyright © 2024–2026, the Gosub community.<br>Spotted an issue? <a href="https://github.com/gosub-io/gosub.io-website">Send a PR on GitHub</a>.</p>
+          <nav>
+            <a href="https://github.com/gosub-io/gosub-engine">GitHub</a>
+            <a href="https://chat.developer.gosub.io">Zulip</a>
+            <a href="https://chat.gosub.io">Discord</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </footer>
+
+        <p class="seafloor">- seafloor reached · resurface at <a href="#top" style="color:inherit;">↑ 0 m</a> -</p>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+baseURL = "https://gosub.io/"
+languageCode = "en"
+title = "Gosub"
+enableRobotsTXT = true
+disableKinds = ["taxonomy", "term"]
+
+# The inner page content files are authored as raw HTML, so allow Goldmark
+# to pass through inline HTML in markdown blog posts as well.
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  metatitle = "Gosub - An independent modular browser engine"
+  description = "Gosub is an open-source, modular web browser engine."
+
+[[menu.main]]
+  name = "Home"
+  url = "/"
+  weight = 1
+
+[[menu.main]]
+  name = "About"
+  url = "/about/"
+  weight = 2
+
+[[menu.main]]
+  name = "FAQ"
+  url = "/faq/"
+  weight = 3
+
+[[menu.main]]
+  name = "Status"
+  url = "/status/"
+  weight = 4
+
+[[menu.main]]
+  name = "Contribute"
+  url = "/contribute/"
+  weight = 5
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 6
+
+[[menu.main]]
+  name = "Contact"
+  url = "/contact/"
+  weight = 7
+
+[[menu.main]]
+  name = "GitHub"
+  url = "https://github.com/gosub-io/gosub-engine"
+  weight = 8
