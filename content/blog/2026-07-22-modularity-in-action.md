@@ -24,6 +24,8 @@ What we can already do, however, is render text with the correct foreground and 
 
 Images are another matter. A traditional terminal cannot display them in the same way as a graphical window, so they are currently omitted. In the future, they could be represented through alternative text, placeholders, or one of the image protocols supported by some modern terminals.
 
+![Gosub Text Browser In Action](/images/gosub-textbrowser.png)
+
 The experiment is still small, but it demonstrates why modularity matters.
 
 It allows us to explore ideas that we did not anticipate when the engine was first designed. A text browser powered by the same Gosub engine as a graphical browser could open up entirely new use cases.
