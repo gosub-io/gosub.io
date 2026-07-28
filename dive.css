@@ -77,6 +77,7 @@ body.dive-inner .abyss .btn:hover   { background: #1d4356; }
 
 body.dive-inner .prose              { color: #2c4d5e; }
 body.dive-inner .prose h2           { color: var(--ink-deep); }
+body.dive-inner .prose h3           { color: var(--ink-deep); }
 body.dive-inner .prose a            { color: var(--accent-light); }
 body.dive-inner .prose strong       { color: var(--ink-deep); }
 body.dive-inner .prose li::marker   { color: var(--accent-light); }
@@ -286,6 +287,7 @@ section .zone-intro { max-width: 62ch; margin-bottom: 18px; }
 .zone-light .arrow-link { color: var(--accent-light); }
 .zone-light .prose { color: #2c4d5e; }
 .zone-light .prose h2 { color: var(--ink-deep); }
+.zone-light .prose h3 { color: var(--ink-deep); }
 .zone-light .prose a { color: var(--accent-light); }
 .zone-light .prose strong { color: var(--ink-deep); }
 .zone-light .prose li::marker { color: var(--accent-light); }
@@ -346,6 +348,7 @@ section .zone-intro { max-width: 62ch; margin-bottom: 18px; }
 .prose { max-width: 68ch; color: var(--deep-soft); }
 .prose h2 { color: var(--deep-text); font-size: 1.5rem; margin: 48px 0 14px; }
 .prose h2:first-child { margin-top: 0; }
+.prose h3 { color: var(--deep-text); font-size: 1.15rem; margin: 32px 0 10px; }
 .prose p { margin-bottom: 16px; }
 .prose ul { margin: 0 0 16px 22px; }
 .prose li { margin-bottom: 10px; }
