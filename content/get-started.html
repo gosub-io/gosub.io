@@ -1,0 +1,96 @@
+---
+title: "Your first contribution"
+metatitle: "Your first contribution - Gosub Browser Engine"
+description: "A step-by-step walkthrough: clone the Gosub engine, run the web-platform-tests, pick a failing test and fix it - in about ten minutes."
+lede: "From a fresh clone to a fixed bug in the engine in about ten minutes. No prior knowledge of the codebase, no system packages, nothing to configure."
+zonedepth: "35 m · sunlit zone"
+abyss:
+  depth: "80 m · open water"
+  heading: "Stuck, or found something better to work on?"
+  intro: "Tell us in the Zulip chat. We're happy to help you find your way around the engine."
+  buttons:
+    - label: "Join the Zulip chat"
+      url: "https://chat.developer.gosub.io"
+    - label: "Other ways to contribute"
+      url: "/contribute/"
+      class: "arrow-link"
+      ext: true
+---
+<div class="prose">
+  <h2>Why start with a failing test?</h2>
+  <p>The hardest part of a first contribution is often finding something to work on. We skip that step by using the <a href="https://github.com/web-platform-tests/wpt">web-platform-tests</a> (WPT): the conformance suite that all browser vendors share. Every failing test in it is a specific, already-agreed statement about something our engine gets wrong. You don't have to invent a task, and you don't have to guess whether the work is wanted.</p>
+  <p>All you need is <a href="https://www.rust-lang.org/tools/install">Rust</a> and git.</p>
+
+  <h2>1. Set up the engine and the tests</h2>
+  <p>Clone the engine, then clone the part of WPT we test against, pinned to the commit the engine is measured against. The WPT checkout is sparse, so it's a few hundred MB rather than several GB.</p>
+<pre><code># The engine
+git clone https://github.com/gosub-io/gosub-engine.git
+cd gosub-engine
+
+# A sparse wpt checkout (the wpt/ directory is gitignored)
+git clone --filter=blob:none --sparse \
+    https://github.com/web-platform-tests/wpt.git wpt
+git -C wpt sparse-checkout set \
+    resources common css/css-syntax css/css-values css/support css/reference
+git -C wpt checkout "$(cat tests/wpt/wpt-commit.txt)"
+export WPT_ROOT="$PWD/wpt"
+
+# Run a component. The first build takes about a minute, the run about 30 seconds.
+cargo run --release -p gosub-wpt -- "$WPT_ROOT" css/css-values</code></pre>
+  <p>If the last command prints a table of directories with bars next to them, you're ready. The pass rates will be low. That's expected, and it's exactly why there's so much to pick from.</p>
+<pre><code>  css/css-values                 █░░░░░░░░░  192/4516    4.3%
+  css/css-values/calc-size       ███░░░░░░░    38/120   31.7%
+  css/css-values/urls            ███░░░░░░░    39/126   31.0%</code></pre>
+  <p>The test runner, <code>gosub-wpt</code>, parses each test with our real HTML5 parser and runs its scripts against our real CSS engine. It isn't a full browser: there's no network and no window, which is what keeps it fast.</p>
+
+  <h2>2. Find something to fix</h2>
+  <p>Ask the engine what's worth picking up right now:</p>
+<pre><code>cargo run --release -p gosub-wpt -- "$WPT_ROOT" css/css-values --shortlist</code></pre>
+<pre><code>  Partly passing, nearest to working first:
+     94.3%  css/css-values/progress-invalid.html            33/35, 2 left
+     71.4%  css/css-values/random-item-invalid.html         10/14, 4 left
+     53.2%  css/css-values/tree-counting/calc-sibling...    25/47, 22 left</code></pre>
+  <p>Take one from the top. A <strong>partly passing</strong> test means the engine already understands the feature and gets a detail wrong. That's an afternoon of work, not a project. If the list opens with a <strong>Crashes</strong> section, start there: a crash is a bug that a real web page could trigger.</p>
+  <p>Then run just that one file to see every failing assertion, and what the engine returned instead:</p>
+<pre><code>cargo run --release -p gosub-wpt -- "$WPT_ROOT" &lt;the-file-you-picked&gt;</code></pre>
+
+  <h2>3. A worked example</h2>
+  <p>This is a real bug from September 2026. It has probably been fixed by now, but the method is the same every time.</p>
+  <p>The file <code>css/css-values/viewport-units-parsing.html</code> had 9 subtests passing and 15 failing:</p>
+<pre><code>FAIL e.style['width'] = "1svh" should set the property value
+     - assert_not_equals: property should be set got disallowed value ""
+FAIL e.style['width'] = "1lvmax" should set the property value
+     - assert_not_equals: property should be set got disallowed value ""</code></pre>
+  <p><strong>Compare what passes with what fails.</strong> <code>1svw</code> was accepted, but <code>1svh</code> wasn't. So viewport units weren't missing altogether. Somewhere, a list included some of the spellings and left out others. Reading the results this way is the key step, and it works for almost every test.</p>
+  <p><strong>Search for a value that works next to one that doesn't:</strong></p>
+<pre><code>rg '"svw"' crates/gosub_css3/src/</code></pre>
+  <p>That search leads to <code>LENGTH_UNITS</code> in <code>crates/gosub_css3/src/matcher/syntax_matcher.rs</code>. The list had <code>svw</code>, <code>lvw</code> and <code>dvw</code>, but none of the matching <code>h</code>, <code>i</code>, <code>b</code>, <code>min</code> and <code>max</code> units, even though the code that computes the final values already supported them. Adding the missing units fixed the file: 24 of 24 passing.</p>
+  <p><strong>One rule:</strong> fix the behaviour in the engine itself. The <code>gosub_domjs</code> crate only exists so the tests can talk to the engine. Hard-coding an answer there would turn the test green without fixing anything.</p>
+
+  <h2>4. Prove it</h2>
+  <p>Run your file again. It should pass now. Then compare the whole suite against the committed baseline:</p>
+<pre><code>cargo run --release -p gosub-wpt -- "$WPT_ROOT" --all --expect tests/wpt/expectations-css.txt</code></pre>
+  <p>This run <em>fails</em>, and that's intended. You'll see an <code>UNEXPECTED PASS</code> line for each subtest you fixed. The baseline file records exactly which tests pass, so every improvement to the engine has to update it. Regenerate the baseline:</p>
+<pre><code>cargo run --release -p gosub-wpt -- "$WPT_ROOT" css/css-syntax css/css-values \
+    --write-expectations &gt; tests/wpt/expectations-css.txt</code></pre>
+  <p>Commit your fix together with the regenerated baseline. The change in the baseline shows that your fix works.</p>
+
+  <h2>5. Open a pull request</h2>
+<pre><code>make test          # fmt, clippy, smoke and unit tests</code></pre>
+  <p>A few things we ask of every pull request:</p>
+  <ul>
+    <li><strong>Signed commits.</strong> Every commit must be signed before it can be merged. GitHub has <a href="https://docs.github.com/en/authentication/managing-commit-signature-verification/signing-commits">a guide on setting this up</a>.</li>
+    <li><strong>Keep it small.</strong> Small PRs get reviewed and merged much faster. One to three commits is ideal, so squash where it makes sense.</li>
+    <li><strong>Explain what you did.</strong> Add a short summary of what the PR changes and why. Nobody on the team knows every part of the codebase.</li>
+  </ul>
+
+  <h2>Where to go next</h2>
+  <p>Run the shortlist again and take the next one. Once you're comfortable, the engine repository has more reading material:</p>
+  <ul>
+    <li><a href="https://github.com/gosub-io/gosub-engine/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a> - code style, modules, the Makefile and other ways to contribute.</li>
+    <li><a href="https://github.com/gosub-io/gosub-engine/blob/main/docs/wpt-quickstart.md">WPT quickstart</a> - the source of this walkthrough, kept up to date alongside the code.</li>
+    <li><a href="https://github.com/gosub-io/gosub-engine/blob/main/docs/wpt.md">Web-platform-tests</a> - the full reference for the test harness.</li>
+    <li><a href="https://github.com/gosub-io/gosub-engine/blob/main/docs/README.md">Documentation index</a> - architecture, the tutorial, and every other page in the docs.</li>
+  </ul>
+  <p>Not into CSS parsers? That's fine too. See the <a href="/contribute/">contribute page</a> for everything else we need help with, from documentation to security research.</p>
+</div>
